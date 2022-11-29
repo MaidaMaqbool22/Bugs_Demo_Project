@@ -1,7 +1,7 @@
 <h1>Projects</h1>
 <%= link_to"Create New Project",new_project_path %>
 <% @projects.each do |projects| %>
- <h3> <%= link_to projects.title, project_path(projects)%> </h3>
- <p><%= projects.stages %>...</p>
+ <h3><b>Title:</b> <%= link_to projects.title, project_path(projects)%> </h3>
+ <p><b>Stage:</b> <%= projects.stages %>...</p>
  <%= button_to "Destroy", project_path(projects), method: :delete %>
 <% end %>

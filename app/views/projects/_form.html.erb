@@ -1,14 +1,14 @@
 <%= form_for(@projects) do |form| %>
   
   <div>
-    <%= form.label :title, style: "display: block" %>
+    <b><%= form.label :title, style: "display: block" %></b>
     <%= form.text_field :title %>
   </div>
 
   <br>
 
   <div>
-    <%= form.label :stages %>
+    <b><%= form.label :stages %>:</b>
     <%= form.select(:stages, Project::STAGES_LIST) %>
   </div>
 
