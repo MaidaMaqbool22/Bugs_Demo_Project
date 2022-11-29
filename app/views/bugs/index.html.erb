@@ -1,0 +1,7 @@
+<p><%= link_to"Create New Bug",new_bug_path %></p>
+<% @bugs.each do |bugs| %>
+ <h3><em>Title:</em> <%= link_to bugs.title, bug_path(bugs)%> </h3>
+ <p><b>Stage:</b> <%= bugs.stages %>...</p>
+ <p><b>Type: </b><%= bugs.bug_type %></p>
+ <%= button_to "Destroy", bug_path(bugs), method: :delete %>
+<% end %>

@@ -1,0 +1,20 @@
+<%= form_for(@projects) do |form| %>
+  
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label :stages %>
+    <%= form.select(:stages, Project::STAGES_LIST) %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
