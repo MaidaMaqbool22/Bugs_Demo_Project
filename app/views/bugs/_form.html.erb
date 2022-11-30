@@ -1,5 +1,4 @@
 <%= form_for(@bugs) do |form| %>
-  
   <div>
     <b><%= form.label :title, style: "display: block" %></b>
     <%= form.text_field :title %>
@@ -21,6 +20,12 @@
 
   <br>
 
+  <div>
+    <b><%= form.label :project_id %>:</b>
+    <%= form.select(:project_id , (@projects.pluck :title, :id)) %>
+  </div>
+
+  <br>
   <div>
     <%= form.submit %>
   </div>
