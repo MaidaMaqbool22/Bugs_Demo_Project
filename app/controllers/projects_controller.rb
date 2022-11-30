@@ -10,6 +10,11 @@ class ProjectsController < ApplicationController
 	def show
 	end
 	
+
+  def assignment
+    @projects = Project.all
+  end
+
 	def create
      @project = Project.new(project_params)
 
