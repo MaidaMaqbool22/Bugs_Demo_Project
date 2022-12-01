@@ -1,19 +1,23 @@
 class ProjectsController < ApplicationController
 	before_action :set_project, only: %i[ show edit update destroy]
+
+  access  Developer: {except: [:index, :destroy, :new, :create, :assignment]}, 
+  QA: {except: [:show, :index, :destroy, :new, :create, :edit, :update, :assignment]},
+  admin: :all
 	def index
 		@projects = Project.all
-    @users = User.all
+    @users = User.where(roles: "Developer")
 	end
 	def new
 		@projects= Project.new
-    @users = User.all
+    @users = User.where(roles: "Developer")
 	end
 
 	def show
 	end
 	
   def assignment
-    @projects = Project.all
+    @complete_projects = Project.where(stages: "Completed")
   end
 
 	def create
@@ -29,7 +33,7 @@ class ProjectsController < ApplicationController
     end
 
     def edit
-      @users = User.all
+      @users = User.where(roles: "Developer")
     end
 
     def update
@@ -57,4 +61,5 @@ class ProjectsController < ApplicationController
    def project_params
    	 params.require(:project).permit(:title, :stages, :user_id)
    end
+
 end

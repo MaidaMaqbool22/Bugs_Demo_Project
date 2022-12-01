@@ -1,7 +1,19 @@
 <h1>Home Page</h1>
-<%= link_to "Projects", projects_path %>
+<%= link_to "All Projects", projects_path if logged_in?(:admin)%>
 &nbsp
-<%= link_to "Bugs", bugs_path %>
+<%= link_to "Bugs", bugs_path if logged_in?(:admin, :QA) %>
 &nbsp
-<%= link_to "Assign Projects", assign_projects_path %>
+<%= link_to "Assigned Projects", assign_projects_path if logged_in?(:Developer) %>
+<%= link_to "Completed Projects", assignment_path if logged_in?(:admin) %>
+<%= link_to "Completed Projects", completed_pro_path if logged_in?(:Developer) %>
 <hr>
+
+
+
+<% if logged_in?(:admin) %>
+	 <% @users.each do |users| %>
+		 <p><b>Name: </b><%= users.first_name %></p>
+		 <p><b>Role: </b><%= users.role %></p>
+		 <hr>
+	<% end %>
+<% end %>

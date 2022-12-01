@@ -1,5 +1,7 @@
 class BugsController < ApplicationController
   before_action :set_bug, only: %i[ show edit update destroy]
+
+  access Developer: {except: [:index , :destroy, :new, :create]}, QA: :all, admin: :all
   def index
     @bugs = Bug.all
   end

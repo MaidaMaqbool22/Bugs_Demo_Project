@@ -3,8 +3,23 @@
 <p><%= link_to "Edit Project", edit_project_path %> </p>
 <h1>Bugs</h1>
 <% @projects.bugs.each do |bugs| %>
- <p><b>Title: </b><%= bugs.title%></p>
- <p><b>Type: </b><%= bugs.bug_type%></p>
- <p><b>Stage: </b><%= bugs.stages%>...</p>
- <hr>
+    <% if bugs.stages != "Completed" %>
+         <p><b>Title: </b><%= bugs.title%></p>
+         <p><b>Type: </b><%= bugs.bug_type%></p>
+         <p><b>Stage: </b><%= bugs.stages%>...</p>
+         <% if logged_in?(:Developer) %>
+             <%= form_for(bugs) do |form| %>
+              <div>
+                <b>Change <%= form.label :stages %>:</b>
+                <%= form.select(:stages, Bug::STAGES_LIST) %>
+              </div>
+              <br>
+
+              <div>
+                <%= form.submit "apply"%>
+              </div>
+            <% end %>
+        <% end %>
+         <hr>
+    <% end %>
  <% end %>

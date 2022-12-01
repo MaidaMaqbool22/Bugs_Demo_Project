@@ -1,23 +1,10 @@
 <p><%= link_to"Create New Bug",new_bug_path %></p>
 <% @bugs.each do |bugs| %>
- <h3><em>Title:</em> <%= link_to bugs.title, bug_path(bugs)%> </h3>
- <p><b>Current Stage:</b> <%= bugs.stages %>...</p>
- <p><b>Type: </b><%= bugs.bug_type %></p>
- <p><b>Created In Project: </b><%= bugs.project.title %></p>
-
- <%= form_for(bugs) do |form| %>
-  
-  <div>
-    <b>Change <%= form.label :stages %>:</b>
-    <%= form.select(:stages, Bug::STAGES_LIST) %>
-  </div>
-  <br>
-
-  <div>
-    <%= form.submit "apply"%>
-  </div>
-<% end %>
-<br>
- <%= button_to "Destroy", bug_path(bugs), method: :delete %>
- <hr>
+     <h3><em>Title:</em> <%= link_to bugs.title, bug_path(bugs)%> </h3>
+     <p><b>Current Stage:</b> <%= bugs.stages %>...</p>
+     <p><b>Type: </b><%= bugs.bug_type %></p>
+     <p><b>Created In Project: </b><%= bugs.project.title %></p>
+    <br>
+     <%= button_to "Destroy", bug_path(bugs), method: :delete %>
+     <hr>
 <% end %>

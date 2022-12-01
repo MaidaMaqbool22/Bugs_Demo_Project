@@ -1,1 +1,16 @@
-<h1>Assignment</h1>
+<h1>Completed Projects</h1>
+<% i=0 %>
+<% @complete_projects.each do |projects| %>
+ <h3><b><%= i = i + 1 %>. </b><%= projects.title %> </h3>
+ <%= form_for(projects) do |form| %>
+			  <div>
+			    <b>Change <%= form.label :stages %>:</b>
+			    <%= form.select(:stages, ["To Do"]) %>
+			  </div>
+			  <br>
+			  <div>
+			    <%= form.submit "Apply"%>
+			  </div>
+			<% end %>
+<% end %>
+<hr>
