@@ -5,20 +5,23 @@
  <p><b>Current Stage:</b> <%= projects.stages %>...</p>
 
 <%= form_for(projects) do |form| %>
-  
   <div>
     <b>Change <%= form.label :stages %>:</b>
     <%= form.select(:stages, Project::STAGES_LIST) %>
   </div>
 
   <br>
+  <div>
+    <b><%= form.label "Developer" %>:</b>
+    <%= form.select(:user_id, (@users.pluck :first_name, :id) ) %>
+  </div> 
+  <br>
 
   <div>
-    <%= form.submit "update stage"%>
+    <%= form.submit "Apply"%>
   </div>
 <% end %>
 <br>
-
  <%= button_to "Destroy", project_path(projects), method: :delete %>
  <hr>
 <% end %>

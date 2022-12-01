@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :projects
   # get 'pages/home'
   root to: 'pages#home'
+  get 'assign_projects', to: 'pages#assign_projects'
   get 'assignment', to: 'projects#assignment'
 end

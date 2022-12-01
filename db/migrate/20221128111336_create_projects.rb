@@ -3,7 +3,6 @@ class CreateProjects < ActiveRecord::Migration[7.0]
     create_table :projects do |t|
       t.string :title
       t.string :stages
-
       t.timestamps
     end
   end

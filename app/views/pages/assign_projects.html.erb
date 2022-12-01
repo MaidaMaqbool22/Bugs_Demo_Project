@@ -1,0 +1,21 @@
+<% if current_user %>
+	<% current_user.projects.each do |projects| %>
+		<% if projects %>
+			<h3><b>Title:</b> <%= link_to projects.title, project_path(projects)%> </h3>
+			 <p><b>Current Stage:</b> <%= projects.stages %>...</p>
+			 <%= form_for(projects) do |form| %>
+				  <div>
+				    <b>Change <%= form.label :stages %>:</b>
+				    <%= form.select(:stages, Project::STAGES_LIST) %>
+				  </div>
+				  <br>
+				  <div>
+				    <%= form.submit "Apply"%>
+				  </div>
+			<% end %>
+		<% else %>
+		  <em>No assign Projects</em>
+		<% end %>
+
+	<% end %>
+<% end %>

@@ -3,4 +3,6 @@ class Project < ApplicationRecord
 	has_many :bugs, dependent: :destroy 
 	has_many :user_projects
 	has_many :users, through: :user_projects
+	has_many :users
+	accepts_nested_attributes_for :user_projects
 end

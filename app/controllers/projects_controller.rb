@@ -2,15 +2,16 @@ class ProjectsController < ApplicationController
 	before_action :set_project, only: %i[ show edit update destroy]
 	def index
 		@projects = Project.all
+    @users = User.all
 	end
 	def new
 		@projects= Project.new
+    @users = User.all
 	end
 
 	def show
 	end
 	
-
   def assignment
     @projects = Project.all
   end
@@ -28,6 +29,7 @@ class ProjectsController < ApplicationController
     end
 
     def edit
+      @users = User.all
     end
 
     def update
@@ -53,6 +55,6 @@ class ProjectsController < ApplicationController
       @projects = Project.find(params[:id])
     end
    def project_params
-   	 params.require(:project).permit(:title, :stages)
+   	 params.require(:project).permit(:title, :stages, :user_id)
    end
 end
