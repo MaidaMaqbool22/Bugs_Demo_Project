@@ -2,6 +2,7 @@
 <% if current_user %>
 	<% current_user.projects.each do |projects| %>
 		<% if projects.stages != "Completed" %>
+		<div class="container">
 			<h3><b>Title:</b> <%= link_to projects.title, project_path(projects)%> </h3>
 			 <p><b>Current Stage:</b> <%= projects.stages %>...</p>
 
@@ -14,6 +15,7 @@
 			  <div>
 			    <%= form.submit "Apply" %>
 			  </div>
+		</div>
 			<% end %>
 		<% end %>
 	<% end %>

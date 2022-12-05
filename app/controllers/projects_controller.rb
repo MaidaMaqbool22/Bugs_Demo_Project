@@ -15,7 +15,6 @@ class ProjectsController < ApplicationController
 
 	def show
 	end
-	
   def assignment
     @complete_projects = Project.where(stages: "Completed")
   end
@@ -54,7 +53,6 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url, notice: "Project was successfully destroyed." }
     end
   end
-
    private
 
    def set_project

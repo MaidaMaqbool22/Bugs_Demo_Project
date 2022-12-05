@@ -1,9 +1,27 @@
-<p><%= link_to"Create New Bug",new_bug_path %></p>
-<% @bugs.each do |bugs| %>
-     <h3><em>Title:</em> <%= link_to bugs.title, bug_path(bugs)%> </h3>
-     <p><b>Current Stage:</b> <%= bugs.stages %>...</p>
-     <p><b>Type: </b><%= bugs.bug_type %></p>
-     <p><b>Created In Project: </b><%= bugs.project.title %></p>
-     <%= button_to "Destroy", bug_path(bugs), method: :delete %>
-     <hr>
-<% end %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+
+    <meta name="keywords" content="<%= @seo_keywords %>"/>
+    
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "bugs", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+      <p><%= link_to"Create New Bug",new_bug_path %></p>
+          <% @bugs.each do |bugs| %>
+          <div class="container">
+               <h3><em>Title:</em> <%= link_to bugs.title, bug_path(bugs)%> </h3>
+               <p><b>Current Stage:</b> <%= bugs.stages %>...</p>
+               <p><b>Type: </b><%= bugs.bug_type %></p>
+               <p><b>Created In Project: </b><%= bugs.project.title %></p>
+               <%= button_to "Destroy", bug_path(bugs), method: :delete ,class: "btns"%>
+          </div>
+          <% end %>
+  </body>
+</html>

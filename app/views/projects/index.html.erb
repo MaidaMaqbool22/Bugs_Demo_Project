@@ -1,22 +1,41 @@
-<h1>Projects</h1>
-<%= link_to"Create New Project",new_project_path %>
-<% @projects.each do |projects| %>
-<% if projects.stages != "Completed" %>
- <h3><b>Title:</b> <%= link_to projects.title, project_path(projects)%> </h3>
- <p><b>Current Stage:</b> <%= projects.stages %>...</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
 
-<%= form_for(projects) do |form| %>
-    <div>
-      <b><%= form.label "Assign To Developer" %>:</b>
-      <%= form.select(:user_id, (@users.pluck :first_name, :id),{:include_blank => "...Select..."}) %>
-    </div> 
+    <meta name="keywords" content="<%= @seo_keywords %>"/>
+    
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "projects", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    
+  <h1>Projects</h1>
+  <%= link_to"Create New Project",new_project_path %>
+  <% @projects.each do |projects| %>
+  <% if projects.stages != "Completed" %>
+  <div class= "container">
+     <h3><b>Title:</b> <%= link_to projects.title, project_path(projects)%> </h3>
+     <p><b>Current Stage:</b> <%= projects.stages %>...</p>
+
+    <%= form_for(projects) do |form| %>
+        <div>
+          <b><%= form.label "Assign To Developer" %>:</b>
+          <%= form.select(:user_id, (@users.pluck :first_name, :id),{:include_blank => "...Select..."}) %>
+        </div> 
+        <br>
+        <div>
+          <%= form.submit "Apply"%>
+        </div>
+    <% end %>
     <br>
-    <div>
-      <%= form.submit "Apply"%>
+     <%= button_to "Destroy", project_path(projects), method: :delete, class: "btns" %>
     </div>
 <% end %>
-<br>
- <%= button_to "Destroy", project_path(projects), method: :delete %>
- <hr>
 <% end %>
-<% end %>
+  </body>
+</html>

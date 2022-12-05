@@ -64,5 +64,6 @@ group :development do
   # gem "spring"
   gem 'devise', '~> 4.8', '>= 4.8.1'
   gem 'petergate', '~> 3.0'
+  gem 'sassc-rails'
 end
 
