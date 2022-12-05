@@ -7,11 +7,10 @@
 
 <%= form_for(projects) do |form| %>
     <div>
-      <b><%= form.label "Developer" %>:</b>
-      <%= form.select(:user_id, (@users.pluck :first_name, :id) ) %>
+      <b><%= form.label "Assign To Developer" %>:</b>
+      <%= form.select(:user_id, (@users.pluck :first_name, :id),{:include_blank => "...Select..."}) %>
     </div> 
     <br>
-
     <div>
       <%= form.submit "Apply"%>
     </div>

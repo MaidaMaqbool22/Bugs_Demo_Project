@@ -4,6 +4,7 @@
 		<% if projects.stages != "Completed" %>
 			<h3><b>Title:</b> <%= link_to projects.title, project_path(projects)%> </h3>
 			 <p><b>Current Stage:</b> <%= projects.stages %>...</p>
+
 			 <%= form_for(projects) do |form| %>
 			  <div>
 			    <b>Change <%= form.label :stages %>:</b>
@@ -11,9 +12,9 @@
 			  </div>
 			  <br>
 			  <div>
-			    <%= form.submit "Apply"%>
+			    <%= form.submit "Apply" %>
 			  </div>
 			<% end %>
 		<% end %>
 	<% end %>
-<% end %>
+<% end %> 

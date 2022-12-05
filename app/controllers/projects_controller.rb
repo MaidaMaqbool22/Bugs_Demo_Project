@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 	before_action :set_project, only: %i[ show edit update destroy]
 
-  access  Developer: {except: [:index, :destroy, :new, :create, :assignment]}, 
+  access  Developer: {except: [:index, :destroy, :new, :create, :assignment, :edit]}, 
   QA: {except: [:show, :index, :destroy, :new, :create, :edit, :update, :assignment]},
   admin: :all
 	def index
@@ -22,12 +22,12 @@ class ProjectsController < ApplicationController
 
 	def create
      @project = Project.new(project_params)
-
+     @projects =  @project
      respond_to do |format|
        if @project.save
          format.html { redirect_to projects_path, notice: "Your project is created"}
        else
-         format.html { render :new, status: :unprocessable_entity }
+         format.html { redirect_to new_project_path(@project), notice: "#{@project.errors.full_messages.to_sentence}" }
        end
      end
     end
@@ -41,7 +41,8 @@ class ProjectsController < ApplicationController
       if @projects.update(project_params)
         format.html { redirect_to projects_path, notice: "Project was successfully updated." }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        # format.html { render :edit, status: :unprocessable_entity }
+        format.html { redirect_to edit_project_path(@projects), notice: "#{@projects.errors.full_messages.to_sentence}" }
       end
     end
   end
@@ -59,7 +60,6 @@ class ProjectsController < ApplicationController
       @projects = Project.find(params[:id])
     end
    def project_params
-   	 params.require(:project).permit(:title, :stages, :user_id)
+   	 params.require(:project).permit(:title, :stages ,:user_id)
    end
-
 end

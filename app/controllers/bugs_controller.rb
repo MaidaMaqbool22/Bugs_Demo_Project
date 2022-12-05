@@ -1,7 +1,7 @@
 class BugsController < ApplicationController
   before_action :set_bug, only: %i[ show edit update destroy]
 
-  access Developer: {except: [:index , :destroy, :new, :create]}, QA: :all, admin: :all
+  access Developer: {except: [:index , :destroy, :new, :create, :edit]}, QA: :all, admin: :all
   def index
     @bugs = Bug.all
   end
@@ -15,12 +15,12 @@ class BugsController < ApplicationController
   
   def create
      @bug = Bug.new(bug_params)
-     
+     @bugs = @bug
      respond_to do |format|
        if @bug.save
          format.html { redirect_to bugs_path, notice: "Your project is created"}
        else
-         format.html { render :new, status: :unprocessable_entity }
+         format.html { redirect_to new_bug_path(@bug), notice: "#{@bug.errors.full_messages.to_sentence}" }
        end
      end
     end
@@ -34,7 +34,8 @@ class BugsController < ApplicationController
       if @bugs.update(bug_params)
         format.html { redirect_to bugs_path, notice: "Bug was successfully updated." }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        # format.html { render :edit, status: :unprocessable_entity }
+        format.html { redirect_to edit_bug_path(@bugs), notice: "#{@bugs.errors.full_messages.to_sentence}" }
       end
     end
   end

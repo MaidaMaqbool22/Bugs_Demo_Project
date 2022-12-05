@@ -1,5 +1,5 @@
 <h1>Home Page</h1>
-<%= link_to "All Projects", projects_path if logged_in?(:admin)%>
+<%= link_to "Pending Projects", projects_path if logged_in?(:admin)%>
 &nbsp
 <%= link_to "Bugs", bugs_path if logged_in?(:admin, :QA) %>
 &nbsp
@@ -11,6 +11,7 @@
 
 
 <% if logged_in?(:admin) %>
+<h2>Registered Users:</h2>
 	 <% @users.each do |users| %>
 		 <p><b>Name: </b><%= users.first_name %></p>
 		 <p><b>Role: </b><%= users.role %></p>

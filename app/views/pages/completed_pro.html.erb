@@ -2,6 +2,5 @@
 <% i=0 %>
 <% current_user.projects.where(stages: "Completed").each do |projects| %>
  <h3><b><%= i = i + 1 %>. </b><%= projects.title %> </h3>
- 
 <% end %>
 <hr>

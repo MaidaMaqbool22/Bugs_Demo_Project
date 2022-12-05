@@ -11,10 +11,11 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
+    <p class="notice"><%= notice if notice != "Permission Denied"%></p>
     <p class="alert"><%= alert %></p>
+
     <% if current_user %>
-    <h2>Hi, <%= current_user.first_name %></h2>
+    <h2><em>Hi, <%= current_user.first_name.upcase %></em></h2>
     <%= button_to "logout", destroy_user_session_path, method: :delete %>
     <% else %>
     <%= link_to "Register", new_user_registration_path %>&nbsp

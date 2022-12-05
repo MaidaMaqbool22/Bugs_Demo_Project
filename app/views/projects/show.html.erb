@@ -1,9 +1,8 @@
 <h1><%= @projects.title%></h1>
-<em><%= @projects.stages%></em>
-<p><%= link_to "Edit Project", edit_project_path %> </p>
-<h1>Bugs</h1>
+<em><b>Stage: </b><%= @projects.stages%></em>
+<p><%= link_to "Edit Project", edit_project_path if logged_in?(:admin)%> </p>
+<h1>Bugs:</h1>
 <% @projects.bugs.each do |bugs| %>
-    <% if bugs.stages != "Completed" %>
          <p><b>Title: </b><%= bugs.title%></p>
          <p><b>Type: </b><%= bugs.bug_type%></p>
          <p><b>Stage: </b><%= bugs.stages%>...</p>
@@ -21,5 +20,4 @@
             <% end %>
         <% end %>
          <hr>
-    <% end %>
  <% end %>

@@ -16,7 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_102510) do
 
   create_table "bugs", force: :cascade do |t|
     t.string "title"
-    t.string "stages"
+    t.string "stages", default: "To Do"
     t.string "bug_type"
     t.string "status"
     t.datetime "created_at", null: false
@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_102510) do
 
   create_table "projects", force: :cascade do |t|
     t.string "title"
-    t.string "stages"
+    t.string "stages", default: "To Do"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "assign_to"

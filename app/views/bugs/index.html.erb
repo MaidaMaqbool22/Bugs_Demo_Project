@@ -4,7 +4,6 @@
      <p><b>Current Stage:</b> <%= bugs.stages %>...</p>
      <p><b>Type: </b><%= bugs.bug_type %></p>
      <p><b>Created In Project: </b><%= bugs.project.title %></p>
-    <br>
      <%= button_to "Destroy", bug_path(bugs), method: :delete %>
      <hr>
 <% end %>

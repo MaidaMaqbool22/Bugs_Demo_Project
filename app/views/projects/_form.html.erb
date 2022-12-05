@@ -1,16 +1,15 @@
-<%= form_for(@projects) do |form| %>
-  
+<%= form_for (@projects) do |form| %>
   <div>
     <b><%= form.label :title, style: "display: block" %></b>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, required: true %>
   </div>
 
   <br>
 
-  <div>
+  <!-- <div>
     <b><%= form.label :stages %>:</b>
     <%= form.select(:stages, Project::STAGES_LIST) %>
-  </div>
+  </div> -->
 
   <br>
 
