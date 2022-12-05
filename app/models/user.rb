@@ -16,4 +16,24 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   USER_TYPE = ["Developer", "QA"]
+
+  validates :email , :first_name, :last_name, presence: true
+
+#   PASSWORD_FORMAT = /\A 
+#   (?=.[A-Z])        # Must contain an upper case character
+# /x
+#   validates :password,
+#   presence: true, 
+#   format: { with: PASSWORD_FORMAT}, 
+#   on: :create 
+validate :password_requirements_are_met
+def password_requirements_are_met
+  rules = {
+    " contain uppercase letters only"  => /[A-Z]+/,
+  }
+
+  rules.each do |message, regex|
+    return errors.add( :password, message ) unless password.match( regex )
+  end
+end
 end

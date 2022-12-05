@@ -37,6 +37,7 @@ class ProjectsController < ApplicationController
     end
 
     def update
+      @users = User.all
     respond_to do |format|
       if @projects.update(project_params)
         format.html { redirect_to projects_path, notice: "Project was successfully updated." }

@@ -27,9 +27,14 @@ class Project < ApplicationRecord
 		end
 	end
 
-	before_update :project_limit_set
+	validate :project_limit_set
 
 	def project_limit_set
-		debugger
+		if User.find(self.user_id).projects.count >= 3
+			self.errors.add(:base, "can't assign more than three projects")
+			return false
+		else
+			return true
+	    end
 	end
 end
