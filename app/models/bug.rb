@@ -6,7 +6,9 @@ class Bug < ApplicationRecord
 	before_create :change_stage_of_project
 
 	def change_stage_of_project
-		self.project.update(stages: "To Do")
+		if self.project.stages == "Completed"
+			self.project.update(stages: "To Do")
+		end
 	end
 
 	validates :title, presence:true, length: {maximum: 20, minimum:3}

@@ -19,9 +19,9 @@
 		&nbsp
 		<%= link_to "Bugs", bugs_path if logged_in?(:admin, :QA) %>
 		&nbsp
-		<%= link_to "Assigned Projects", assign_projects_path if logged_in?(:Developer) %>
-		<%= link_to "Completed Projects", assignment_path if logged_in?(:admin) %>
-		<%= link_to "Completed Projects", completed_pro_path if logged_in?(:Developer) %>
+		<%= link_to "Assigned Projects", assign_projects_pages_path if logged_in?(:Developer) %>
+		<%= link_to "Completed Projects", assignment_projects_path if logged_in?(:admin) %>
+		<%= link_to "Completed Projects", completed_pro_pages_path if logged_in?(:Developer) %>
 		<hr>
 
 
@@ -29,7 +29,8 @@
 		<% if logged_in?(:admin) %>
 		<h2>Registered Users:</h2>
 			 <% @users.each do |users| %>
-				 <p><b>Name: </b><%= users.first_name %> <%= users.last_name %></p>
+				 <!-- <p><b>Name: </b><%= users.first_name %> <%= users.last_name %></p> -->
+				 <p><b>Name: </b><%= users.full_name %></p>
 				 <p><b>Role: </b><%= users.role %></p>
 				 <hr>
 			<% end %>

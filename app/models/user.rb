@@ -9,13 +9,13 @@ class User < ApplicationRecord
  
 
   has_many :user_projects
-  has_many :projects, through: :user_projectsex
-  has_many :projects
+  has_many :projects, through: :user_projects
+  # has_many :projects
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  USER_TYPE = ["Developer", "QA"]
+  USER_TYPE = ["Developer", "QA","admin"]
 
   validates :email , :first_name, :last_name, presence: true
 
@@ -29,11 +29,15 @@ class User < ApplicationRecord
 validate :password_requirements_are_met
 def password_requirements_are_met
   rules = {
-    " contain uppercase letters only"  => /[A-Z]+/,
+    " contain uppercase letters only"  => /[a-z]+/,
   }
 
   rules.each do |message, regex|
     return errors.add( :password, message ) unless password.match( regex )
   end
+end
+
+def full_name
+  return self.first_name + ' ' + self.last_name
 end
 end

@@ -4,14 +4,16 @@ class PagesController < ApplicationController
   def home
     @users= User.all
   end
+
   def assign_projects
-    @users = User.all
+    @projects = current_user.projects
   end
+
   def show
     @projects = Project.find(params[:id])
   end
 
   def completed_pro
-    @users = User.all
+    @projects = current_user.projects
   end
 end

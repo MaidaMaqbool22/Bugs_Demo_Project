@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
+  root to: 'pages#home'
+
   resources :bugs
   devise_for :users
-  resources :projects
+  resources :projects do
+    collection do
+      get 'assignment'
+    end
+  end
+  resources :pages do
+    collection do
+      get 'assign_projects'
+      get 'completed_pro'
+    end
+  end
   # get 'pages/home'
-  root to: 'pages#home'
-  get 'assign_projects', to: 'pages#assign_projects'
-  get 'assignment', to: 'projects#assignment'
-  get 'show_assing_pro', to: 'pages#show'
-  get 'completed_pro', to: 'pages#completed_pro'
 end
