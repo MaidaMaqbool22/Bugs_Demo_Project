@@ -30,7 +30,7 @@
 		<h2>Registered Users:</h2>
 			 <% @users.each do |users| %>
 				 <!-- <p><b>Name: </b><%= users.first_name %> <%= users.last_name %></p> -->
-				 <p><b>Name: </b><%= users.full_name %></p>
+				 <p><b>Name: </b><%= link_to users.full_name , user_path(users)%></p>
 				 <p><b>Role: </b><%= users.role %></p>
 				 <hr>
 			<% end %>

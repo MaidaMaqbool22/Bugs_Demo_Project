@@ -4,7 +4,6 @@ class PagesController < ApplicationController
   def home
     @users= User.all
   end
-
   def assign_projects
     @projects = current_user.projects
   end
