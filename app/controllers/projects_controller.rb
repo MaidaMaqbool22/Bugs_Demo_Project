@@ -38,7 +38,9 @@ class ProjectsController < ApplicationController
 
     def update
     respond_to do |format|
+      if params["project"]["discriptions_attributes"]
       @projects.discriptions.destroy_all
+      end
       if @projects.update(project_params)
         if params["project"]["user_id"]
         @projects.user_projects.destroy_all

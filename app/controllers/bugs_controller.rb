@@ -32,7 +32,9 @@ class BugsController < ApplicationController
 
     def update
     respond_to do |format|
+      if params["bug"]["discriptions_attributes"]
       @bugs.discriptions.destroy_all
+      end
       if @bugs.update(bug_params)
         format.html { redirect_to bugs_path, notice: "Bug was successfully updated." }
       else
