@@ -5,6 +5,13 @@
   </div>
   <br>
   <div>
+    <%= form.fields_for :discriptions do |discription_form| %>
+      <%= discription_form.label :detail %>
+      <%= discription_form.text_field :detail %>
+    <% end %>
+  </div>
+  <br>
+  <div>
     <%= form.submit%>
   </div>
 <% end %>

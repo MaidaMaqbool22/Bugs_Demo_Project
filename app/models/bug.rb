@@ -3,6 +3,11 @@ class Bug < ApplicationRecord
 	BUGS_TYPE = ["Bug", "Feature"]
 	belongs_to  :project
 
+  # polymorphic association for discription
+  has_many :discriptions, as: :discriptionable
+  accepts_nested_attributes_for :discriptions, 
+	                              reject_if: lambda {|attrs| attrs['detail'].blank?}
+
 	before_create :change_stage_of_project
 
 	def change_stage_of_project

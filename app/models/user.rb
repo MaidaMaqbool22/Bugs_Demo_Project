@@ -8,9 +8,10 @@ class User < ApplicationRecord
   ############################################################################################ 
  
 
+  # many_to_many using through between users and projects
   has_many :user_projects
   has_many :projects, through: :user_projects
-  # has_many :projects
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -19,13 +20,6 @@ class User < ApplicationRecord
 
   validates :email , :first_name, :last_name, presence: true
 
-#   PASSWORD_FORMAT = /\A 
-#   (?=.[A-Z])        # Must contain an upper case character
-# /x
-#   validates :password,
-#   presence: true, 
-#   format: { with: PASSWORD_FORMAT}, 
-#   on: :create 
 validate :password_requirements_are_met
 def password_requirements_are_met
   rules = {

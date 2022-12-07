@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
 
 	def new
 		@projects= Project.new
+    @projects.discriptions.build
 	end
 
 	def show
@@ -37,7 +38,8 @@ class ProjectsController < ApplicationController
 
     def update
     respond_to do |format|
-      if @projects.update(project_params)s
+      @projects.discriptions.destroy_all
+      if @projects.update(project_params)
         if params["project"]["user_id"]
         @projects.user_projects.destroy_all
         @projects.user_projects.create!(user_id: params["project"]["user_id"])
@@ -64,6 +66,6 @@ class ProjectsController < ApplicationController
       @projects = Project.find(params[:id])
     end
    def project_params
-   	 params.require(:project).permit(:title, :stages ,:user_id)
+   	 params.require(:project).permit(:title, :stages ,:user_id, discriptions_attributes: [:detail])
    end
 end

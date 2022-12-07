@@ -7,6 +7,7 @@ class BugsController < ApplicationController
   end
   def new
     @bugs = Bug.new
+    @bugs.discriptions.build
     @projects = Project.all
   end
 
@@ -31,6 +32,7 @@ class BugsController < ApplicationController
 
     def update
     respond_to do |format|
+      @bugs.discriptions.destroy_all
       if @bugs.update(bug_params)
         format.html { redirect_to bugs_path, notice: "Bug was successfully updated." }
       else
@@ -54,6 +56,6 @@ class BugsController < ApplicationController
     end
 
      def bug_params
-       params.require(:bug).permit(:title, :stages, :bug_type, :status, :project_id)
+       params.require(:bug).permit(:title, :stages, :bug_type, :status, :project_id, discriptions_attributes: [:detail])
      end
 end

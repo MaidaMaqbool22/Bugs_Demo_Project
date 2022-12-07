@@ -4,11 +4,6 @@
     <%= form.text_field :title %>
   </div>
 
-  <!-- <div>
-    <b><%= form.label :stages %>:</b>
-    <%= form.select(:stages, Bug::STAGES_LIST) %>
-  </div>
- -->
   <br>
 
   <div>
@@ -21,6 +16,15 @@
   <div>
     <b><%= form.label :project_id %>:</b>
     <%= form.select(:project_id , (@projects.pluck :title, :id)) %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.fields_for :discriptions do |discription_form| %>
+    <b> <%= discription_form.label :detail %>: </b>
+      <%= discription_form.text_field :detail %>
+    <% end %>
   </div>
 
   <br>

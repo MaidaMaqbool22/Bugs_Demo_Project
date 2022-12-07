@@ -2,3 +2,7 @@
 <p><b>Stage: </b><em><%= @bugs.stages%></em></p>
 <p><b>Type: </b><em><%= @bugs.bug_type %></em></p>
 <p><%= link_to "Edit Bug", edit_bug_path %> </p>
+
+<% @bugs.discriptions.each do |d| %>
+<p><b>Detail: </b><%= d.detail %></p>
+<% end %>

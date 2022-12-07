@@ -1,9 +1,18 @@
 class Project < ApplicationRecord
 	STAGES_LIST = ["To Do", "In Progress", "In Review", "Completed"]
+
+	# one_to_many between project and bugs
 	has_many :bugs, dependent: :destroy 
+
+	# many_to_many using through between users and projects
 	has_many :user_projects, dependent: :destroy 
 	has_many :users, through: :user_projects
-	# has_many :users
+
+	# polymorphic association for discription
+	has_many :discriptions, as: :discriptionable
+	accepts_nested_attributes_for :discriptions, 
+	                              reject_if: lambda {|attrs| attrs['detail'].blank?}
+
 	accepts_nested_attributes_for :user_projects
 	validates :title, presence: true, length: {maximum: 10, minimum:3}
 	validates :stages, presence: true
